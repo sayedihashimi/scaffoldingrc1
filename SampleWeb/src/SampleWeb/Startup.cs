@@ -53,6 +53,11 @@ namespace SampleWeb
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<StudentContext>(options =>
+                    options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=StudentContext-051e70d7-85ab-4ef1-9f00-49c014d2a2fe;Trusted_Connection=True;MultipleActiveResultSets=true"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
